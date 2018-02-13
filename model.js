@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const BreakfastSchema = mongoose.Schema({
+const OrderSchema = mongoose.Schema({
   customer: {
     type: String,
     trim: true,
@@ -28,6 +28,6 @@ const BreakfastSchema = mongoose.Schema({
   }
 });
 
-var Breakfast = mongoose.model("Breakfast", BreakfastSchema);
+var Order = mongoose.model("Order", OrderSchema);
 
-module.exports = Breakfast;
+module.exports = Order;

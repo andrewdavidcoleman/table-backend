@@ -19,7 +19,7 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 app.use(logger("dev"));
 
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/breakfast');
 const db = mongoose.connection;
 
 db.on("error", function(error) {

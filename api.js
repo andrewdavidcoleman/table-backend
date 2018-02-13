@@ -1,39 +1,30 @@
-const Breakfast = require('./model.js')
-
-const andrewData = new Breakfast({
-  name: 'Andrew',
-  drink: 'Latte',
-  main: 'Pancakes',
-  side1: 'Eggs',
-  side2: 'Chicken sausage'
-});
-
-const christineData = new Breakfast({
-  name: 'Christine',
-  drink: 'Americano',
-  main: 'Waffle',
-  side1: 'Eggs',
-  side2: 'Bacon'
-});
+const Order = require('./model.js')
 
 module.exports = function(router) {
 
-  router.get('/api/andrew', function(req, res) {
-    res.json(andrewData);
+  router.get('/api/orders', function(req, res) {
+
+    Order.find({}, function(error, doc) {
+      // Send any errors to the browser
+      if (error) {
+        res.send(error);
+      }
+      // Or send the doc to the browser
+      else {
+        res.send(doc);
+      }
+    })
   });
 
-  router.get('/api/christine', function(req, res) {
-    res.json(christineData);
-  });
+  router.post('/api/orders', function(req, res) {
+    //use Order model to make a new order from req.body
+    var newOrder = new Order(req.body);
 
-  router.post('/api/andrew', function(req, res) {
-    andrewData.push(req.body);
-    res.json(true);
-  });
+    newOrder.save(function(error, doc) {
 
-  router.post('/api/christine', function(req, res) {
-    christineData.push(req.body);
-    res.json(true);
-  })
+      //code here to add new order to DB
+      
+    })
+  });
 
 }
